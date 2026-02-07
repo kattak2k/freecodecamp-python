@@ -3,8 +3,6 @@ class GameCharacter:
     def __init__(self, name):
         if not isinstance(name, str):
             raise TypeError("'name' should be of type string")
-        if not isinstance(health, int) or not isinstance(mana, int) or not isinstance(level, int):
-            raise TypeError("'health', 'mana' and 'level' should be of type integer")
 
         self._name = name
         self._health = 100
@@ -12,7 +10,7 @@ class GameCharacter:
         self._level = 1
 
     def __str__(self):
-        return f'Name: {self.name}\n Level: {self.health}\n Health: {self.mana}\n Mana: {self.level}'
+        return f'Name: {self.name}\nLevel: {self.level}\nHealth: {self.health}\nMana: {self.mana}'
 
     @property
     def name(self):
@@ -24,9 +22,14 @@ class GameCharacter:
     
     @health.setter
     def health(self, new_health):
-        if not (new_health < 0 or new_health > 100):
+        if not (new_health > 0 or new_health < 100):
             raise ValueError(f"Invalid input 'health' {new_health} should be between 0 and 100")
-        self._health = new_health
+        if new_health < 0:
+            self._health = 0
+        elif new_health > 100:
+            self._health = 100    
+        else:      
+            self._health = new_health
 
     @property
     def mana(self):
@@ -34,13 +37,31 @@ class GameCharacter:
 
     @mana.setter
     def mana(self, new_mana):
-        if not (new_mana < 0 or new_mana > 50):
+        if not (new_mana > 0 or new_mana < 50):
             raise ValueError(f"Invalid input 'mana' {new_mana} should be between 0 and 50")
-        self._mana = new_mana    
+
+        if new_mana < 0:
+            self._mana = 0
+        elif new_mana > 50:
+            self._mana = 50    
+        else:        
+            self._mana = new_mana    
 
     @property
     def level(self):
         return self._level
 
+    # @level.setter
+    def level_up(self):
+        self._level += 1
+        self.health = 100
+        self.mana = 50
+
+        print(f"{self.name} leveled up to {self._level}!")
+
 kratos = GameCharacter('Kratos')
+# print(kratos)
+kratos.health = 40
+kratos.level_up
+kratos.level_up
 print(kratos)
