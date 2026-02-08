@@ -1,3 +1,13 @@
+# Media Catalogue (4 items):
+
+# === MOVIES ===
+# 1. The Matrix (1999) - 136 min, The Wachowskis
+# 2. Inception (2010) - 148 min, Christopher Nolan
+# === TV SERIES ===
+# 1. Scrubs (2001) - 9 seasons, 182 episodes, 24 min avg, Bill Lawrence
+# 2. Breaking Bad (2008) - 5 seasons, 62 episodes, 47 min avg, Vince Gilligan
+
+
 class MediaError(Exception):
     """Custom exception for media-related errors."""
 
