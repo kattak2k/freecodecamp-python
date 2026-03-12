@@ -31,15 +31,11 @@
 # 4111-1111-1111-1111	VALID!
 # 1234 5678 9012 3456	INVALID!
 
-import re   
 def verify_card_number(num):
     if len(num) <= 5:
         return "INVALID!"
 
-    if '-' in num:
-        num = num.replace("-","")
-    elif re.search(r'\s', num):
-        num = num.replace(" ","")    
+    num = num.replace("-","").replace(" ","")
     l_num = list(num)
     check_sum = 0
     for i, n in enumerate(reversed(l_num)):
@@ -49,10 +45,8 @@ def verify_card_number(num):
                 check_sum += int(m)
         else:
             check_sum += int(n)
-    if check_sum % 10 == 0:
-        return "VALID!"
-    else:
-        return "INVALID!"    
+
+     return "VALID!" if check_sum % 10 == 0 else "INVALID!"
 
 
 # print(verify_card_number('4539'))
