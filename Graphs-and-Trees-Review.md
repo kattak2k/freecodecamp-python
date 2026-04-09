@@ -81,6 +81,7 @@ Min-Heap
 The value of each parent node is less than or equal to the values of its children.
 The smallest element is at the root.
 Python heapq module example
+```
 import heapq
 
 # Create empty heap
@@ -111,3 +112,4 @@ heapq.heappush(my_heap, (1, "C"))
 
 # Removes lowest number = highest priority
 print(heapq.heappop(my_heap))  # (1, "C")
+```
