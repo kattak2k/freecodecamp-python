@@ -2,7 +2,7 @@
 Graphs and Trees Review
 Graphs Overview
 A graph is a set of nodes (vertices) connected by edges (connections). Each node can connect to multiple other nodes, forming a network. The different types of graphs include:
-
+```
 Directed: edges have a direction (from one node to another), often represented with straight lines and arrows.
 Undirected: edges have no direction, represented with simple lines.
 Vertex: each node is associated to a label or identifier.
@@ -12,7 +12,7 @@ Edge labeled: each edge has a label usually drawn next to corresponding edge.
 Weighted: edges have weights (values) associated with them, that can be used to perform arithmetic operations.
 Disconnected: contains two or more nodes that are not connected by any edges.
 Graphs are used in various applications such as maps, networks, recommendation systems, dependency resolution.
-
+```
 Graph Traversals
 This involves visiting all the nodes in a graph. The two main algorithms are:
 
