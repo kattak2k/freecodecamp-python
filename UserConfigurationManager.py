@@ -1,37 +1,52 @@
-# import pdb
-# pdb.set_trace()
-# test_settings = {'theme': 'dark', 'notifications': 'enabled', 'volume': 'high'}
-test_settings = {}
+
+test_settings = {"theme": "dark"}
+
 
 def add_setting(sdict, sset):
-    for item in sdict.items():
-        if item[0].lower() in test_settings:
-            print(f"Setting '{item[0].lower()}' by already exists! Cannot add a new setting with this name.")
-        else:
-            test_settings[item[0].lower()] = item[1].lower()
-            print(f"Setting '{item[0].lower()}' added with value 'high' successfully!")
+    # normalize existing dict
+    for k in list(sdict.keys()):
+        v = sdict.pop(k)
+        sdict[k.lower()] = v.lower()
 
-    for item in  dict([sset]).items():
-        if item[0].lower() in test_settings:
-            print(f"Setting '{item[0].lower()}' by already exists! Cannot add a new setting with this name.")
-        else:
-            test_settings[item[0].lower()] = item[1].lower()
-            print(f"Setting '{item[0].lower()}' added with value 'high' successfully!")
+    key, value = sset
+    key, value = key.lower(), value.lower()
 
-    print(test_settings)
-    #     if kk[0] in sdict:
-    #         print(kk[0], 'yes')
-    #     if 'dark' in sdict:
-    #         print('no')
+    if key in sdict:
+        return f"Setting '{key}' already exists! Cannot add a new setting with this name."
+    else:
+        sdict[key] = value
+        return f"Setting '{key}' added with value '{value}' successfully!"
 
-    # print(sset)
-def update_setting():
-    pass
-def delete_setting():
-    pass
+def update_setting(sdict, sset):
+    key, val = sset
+    key, val = key.lower(), val.lower()
 
-def view_settings():
-    pass
+    if key in sdict:
+        sdict[key] = val
+        return f"Setting '{key}' updated to '{val}' successfully!"
+    else:
+        return f"Setting '{key}' does not exist! Cannot update a non-existing setting."
+
+
+def delete_setting(sdict, key):
+    key = key.lower()
+
+    if key in sdict:
+        del sdict[key]
+        return f"Setting '{key}' deleted successfully!"
+    else:
+        return "Setting not found!"
+
+
+def view_settings(sdict):
+    if not sdict:
+        return "No settings available."
+
+    result = "Current User Settings:\n"
+    for k, v in sdict.items():
+        result += f"{k.capitalize()}: {v}\n"
+
+    return result
 
 #print(add_setting({'theme': 'light'}, ('THEME', 'dark')))
 print(add_setting({'theme': 'light'}, ('volume', 'high')))
